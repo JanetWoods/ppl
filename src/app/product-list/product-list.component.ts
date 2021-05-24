@@ -10,7 +10,8 @@ import {StarComponent} from '../star/star.component';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-    pageTitle = "Product List";
+  onNotify(message: string):void{}
+  pageTitle = "Product List";
     imageWidth = 50;
     imageMargin = 2;
     otherWidth = 75;
@@ -98,5 +99,9 @@ export class ProductListComponent implements OnInit {
     filterBy = filterBy.toLocaleLowerCase();
     return this.products.filter((product: IProduct) =>
       product.productName.toLocaleLowerCase().includes(filterBy));
+  }
+
+  onRatingClicked(message: string): void{
+    this.pageTitle = 'Product List ' + message;
   }
 }
