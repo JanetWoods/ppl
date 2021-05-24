@@ -16,6 +16,7 @@ export class ProductListComponent implements OnInit {
     widest=180;
     productMargin=5;
     showImage = false;
+    filteredProducts=[];
     listFilter="cart";
 
     toggleImage(): void{
@@ -77,6 +78,7 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log('OnInit happened')
   }
 
 }

@@ -23,7 +23,7 @@
                         <tr>
                             <th>
                                 <button class="btn btn-primary" (click)="toggleImage()">
-                                    {{showImage ? 'Hide Image' : 'Show Image'}}
+                                    {{showImage ? 'Hide' : 'Show'}}  Image
                                 </button>
                             </th>
                             <th>Product</th>
@@ -43,7 +43,7 @@
                                 [style.margin.px]="imageMargin">
                             </td>
                             <td [style.width.px]="widest">{{product.productName}}</td>
-                            <td [style.width.px]="wider">{{product.productCode | lowercase}}  </td>
+                            <td [style.width.px]="wider">{{product.productCode | lowercase | ConvertToSpaces: '-'}}  </td>
                             <td [style.width.px]="widest">{{product.releaseDate}}  </td>
                             <td [style.width.px]="otherWidth">{{product.price | currency:'USD':'symbol': '1.2-2'}}</td>
                             <td [style.width.px]="otherWidth">{{product.starRating}}</td>
