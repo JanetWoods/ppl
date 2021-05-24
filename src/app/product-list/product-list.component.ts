@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductsComponent} from '../products/products.component'
 import {FormsModule} from '@angular/forms';
 import { IProduct } from '../products/product';
-
+import {StarComponent} from '../star/star.component';
 
 @Component({
   selector: 'product-list',
@@ -10,7 +10,8 @@ import { IProduct } from '../products/product';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-    pageTitle = "Product List";
+  onNotify(message: string):void{}
+  pageTitle = "Product List";
     imageWidth = 50;
     imageMargin = 2;
     otherWidth = 75;
@@ -91,12 +92,16 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.listFilter='cart';
+    this.listFilter='';
   }
 
   performFilter(filterBy: string): IProduct[]{
     filterBy = filterBy.toLocaleLowerCase();
     return this.products.filter((product: IProduct) =>
       product.productName.toLocaleLowerCase().includes(filterBy));
+  }
+
+  onRatingClicked(message: string): void{
+    this.pageTitle = 'Product List ' + message;
   }
 }
