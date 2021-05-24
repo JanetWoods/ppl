@@ -1,4 +1,4 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 
 @Component({
@@ -7,8 +7,8 @@ import { Component, OnChanges } from '@angular/core';
   styleUrls: ['./star.component.css']
 })
 export class StarComponent  {
+  @Input() rating: number=0;
 
-  rating: number = 4;
   cropWidth: number = 75;
 
   ngOnChanges(): void{
