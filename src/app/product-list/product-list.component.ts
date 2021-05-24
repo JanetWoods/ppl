@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductsComponent} from '../products/products.component'
 import {FormsModule} from '@angular/forms';
 import { IProduct } from '../products/product';
-
+import {StarComponent} from '../star/star.component';
 
 @Component({
   selector: 'product-list',
