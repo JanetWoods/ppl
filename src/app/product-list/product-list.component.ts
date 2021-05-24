@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductsComponent} from '../products/products.component'
 import {FormsModule} from '@angular/forms';
+import { IProduct } from '../products/product';
+
 
 @Component({
   selector: 'product-list',
@@ -16,14 +18,25 @@ export class ProductListComponent implements OnInit {
     widest=180;
     productMargin=5;
     showImage = false;
-    filteredProducts=[];
-    listFilter="cart";
+
+    private _listFilter: string = '';
+
+    get listFilter(): string{
+        return this._listFilter;
+    }
+    set listFilter(value: string){
+      this._listFilter = value;
+      console.log('In setter: ', value);
+      this.filteredProducts = this.performFilter(value);
+    }
+
 
     toggleImage(): void{
       this.showImage = !this.showImage;
     }
+    filteredProducts: IProduct[] = [];
 
-    products: any[]= [
+    products: IProduct[]= [
       {
         "productId": 1,
         "productName": "Leaf Rake",
@@ -78,7 +91,12 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log('OnInit happened')
+    this.listFilter='cart';
   }
 
+  performFilter(filterBy: string): IProduct[]{
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product: IProduct) =>
+      product.productName.toLocaleLowerCase().includes(filterBy));
+  }
 }
