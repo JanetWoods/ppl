@@ -5,7 +5,7 @@ import { IProduct } from '../products/product';
 import {StarComponent} from '../star/star.component';
 import {ProductService} from '../products/product.service';
 import {catchError, tap} from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { Subscription, Observable, throwError } from 'rxjs';
 
 @Component({
   selector: 'product-list',
@@ -24,11 +24,15 @@ export class ProductListComponent implements OnInit {
     productMargin=5;
     showImage = false;
     errorMessage: string = '';
+    sub!: Subscription;
+
+
     private _listFilter: string = '';
 
     get listFilter(): string{
         return this._listFilter;
     }
+
     set listFilter(value: string){
       this._listFilter = value;
       console.log('In setter: ', value);
@@ -41,26 +45,27 @@ export class ProductListComponent implements OnInit {
     }
     filteredProducts: IProduct[] = [];
 
-    products: IProduct[]= [
-
-    ];
+    products: IProduct[]= [];
   constructor(private productService: ProductService) {}
-
-  ngOnInit(): void {
-    this.productService.getProducts().subscribe({
-      next: products => {
-        this.products = this.products;
-        this.filteredProducts = this.products;
-      },
-      error: err => this.errorMessage =err
-    });
-  }
 
   performFilter(filterBy: string): IProduct[]{
     filterBy = filterBy.toLocaleLowerCase();
     return this.products.filter((product: IProduct) =>
       product.productName.toLocaleLowerCase().includes(filterBy));
   }
+
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe({
+      next: products => {this.products = products;
+        this.filteredProducts = this.products;
+      },
+      error: err => this.errorMessage =err
+    });
+  }
+  ngOnDestroy():void{
+    this.sub.unsubscribe();
+  }
+
 
   onRatingClicked(message: string): void{
     this.pageTitle = 'Product List ' + message;
