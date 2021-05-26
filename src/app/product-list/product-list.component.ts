@@ -4,6 +4,9 @@ import {FormsModule} from '@angular/forms';
 import { IProduct } from '../products/product';
 import {StarComponent} from '../star/star.component';
 import {ProductService} from '../products/product.service';
+import {catchError, tap} from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
@@ -20,7 +23,7 @@ export class ProductListComponent implements OnInit {
     widest=180;
     productMargin=5;
     showImage = false;
-
+    errorMessage: string = '';
     private _listFilter: string = '';
 
     get listFilter(): string{
@@ -44,8 +47,13 @@ export class ProductListComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
+    this.productService.getProducts().subscribe({
+      next: products => {
+        this.products = this.products;
+        this.filteredProducts = this.products;
+      },
+      error: err => this.errorMessage =err
+    });
   }
 
   performFilter(filterBy: string): IProduct[]{
