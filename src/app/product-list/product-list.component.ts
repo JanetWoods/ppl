@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {ProductsComponent} from '../products/products.component'
 import {FormsModule} from '@angular/forms';
 import { IProduct } from '../products/product';
@@ -12,7 +12,7 @@ import { Subscription, Observable, throwError } from 'rxjs';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
   onNotify(message: string):void{}
 
   pageTitle = "Product List";
