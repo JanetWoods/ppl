@@ -6,6 +6,13 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { FormsModule } from '@angular/forms';
 import {ConvertToSpacesPipe} from '../shared/convert-to-spaces.pipe';
 import { StarComponent } from './star/star.component';
+import {HttpClientModule} from '@angular/common/http';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+import { WelcomeComponent } from './home/welcome';
+import { RouterModule, Routes } from '@angular/router';
+import { NavbarComponent } from './navbar/navbar.component';
+import {AppRoutingModule} from '../app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,10 +20,15 @@ import { StarComponent } from './star/star.component';
     ProductListComponent,
     ConvertToSpacesPipe,
     StarComponent,
+    ProductDetailsComponent,
+    WelcomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

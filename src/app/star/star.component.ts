@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 
@@ -8,6 +9,7 @@ import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core
 })
 export class StarComponent implements OnChanges {
   @Input() rating: number=0;
+  protected rate: number = 0;
 
   cropWidth: number = 75;
 
@@ -18,5 +20,8 @@ export class StarComponent implements OnChanges {
   }
   onClick(): void{
     this.ratingClicked.emit(`The rating ${this.rating} was clicked!`);
+
+    console.log(`this rate: ${this.rate}, this rating: ${this.rating}`)
+
   }
 }
