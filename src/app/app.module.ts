@@ -9,9 +9,9 @@ import { StarComponent } from './star/star.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { WelcomeComponent } from './home/welcome';
-import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import {AppRoutingModule} from '../app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import {AppRoutingModule} from '../app-routing.module';
     StarComponent,
     ProductDetailsComponent,
     WelcomeComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +30,6 @@ import {AppRoutingModule} from '../app-routing.module';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

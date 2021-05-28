@@ -19,6 +19,8 @@ export class ProductService{
             catchError(this.handleError)
         );
     }
+
+
     private handleError(err: HttpErrorResponse){
         //this is where we would send err msg to server for logging
         let errorMessage = '';
